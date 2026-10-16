@@ -4,6 +4,10 @@ The website for DropDadDeals. It shows the deals the price tracker writes to Sup
 
 Live at https://realpricedrops.vercel.app (the Vercel project and URL still use the old name `realpricedrops`).
 
+## Deploying
+
+The Vercel project is connected to this repo. Every push to `main` deploys to the live site automatically, usually within a minute. Other branches get their own preview URL.
+
 ## How it works
 
 - Next.js 15 (App Router).
