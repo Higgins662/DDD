@@ -165,6 +165,7 @@ img { max-width: 100%; display: block; }
 .prose { max-width: 680px; padding: 36px 0 64px; }
 .prose h1 { font-family: var(--serif); font-size: 38px; font-weight: 700; line-height: 1.05; margin: 0 0 18px; }
 .prose p { font-size: 17px; }
+.prose h2 { font-family: var(--serif); font-size: 24px; margin: 32px 0 8px; }
 .prose a { color: var(--accent); }
 
 /* Footer */

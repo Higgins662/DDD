@@ -8,6 +8,7 @@ import "@fontsource/ibm-plex-mono/latin-500.css";
 import "@fontsource/ibm-plex-mono/latin-600.css";
 import "./globals.css";
 import { SITE_URL } from "../lib/data";
+import GoogleAnalytics from "../components/GoogleAnalytics";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <GoogleAnalytics />
         <header className="site-header">
           <div className="wrap">
             <Link href="/" className="brand" aria-label="DropDadDeals home">

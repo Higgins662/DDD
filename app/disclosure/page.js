@@ -21,6 +21,16 @@ export default function Disclosure() {
           Prices and availability are accurate as of the time we checked them and are subject to
           change. The price shown at the store at the time of purchase is the price that applies.
         </p>
+        <h2>Analytics</h2>
+        <p>
+          We use Google Analytics to count visits and see which deals people find useful. It sets
+          cookies and collects standard usage information like pages viewed, device type and rough
+          location. We don't collect your name or email. You can opt out with Google's{" "}
+          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">
+            Analytics opt-out add-on
+          </a>
+          .
+        </p>
       </div>
     </div>
   );
