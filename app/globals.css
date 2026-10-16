@@ -59,11 +59,13 @@ img { max-width: 100%; display: block; }
 .hero p { color: var(--muted); max-width: 620px; margin: 0; font-size: 17px; }
 
 /* Home hero with the DropDad character standing on the line under it */
-.hero-with-dad { padding: 0; border-bottom: 2px solid var(--accent); }
+.hero-with-dad { padding: 0; position: relative; }
+/* The orange line sits in front of the character, so he looks cut off by it. */
+.hero-with-dad::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent); z-index: 2; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 24px; }
 .hero-copy { padding: 44px 0 40px; align-self: center; }
 .hero-dad { position: relative; margin: 0; width: clamp(200px, 26vw, 290px); }
-.hero-dad img { width: 100%; height: auto; display: block; margin-bottom: -2px; }
+.hero-dad img { width: 100%; height: auto; display: block; }
 .hero-bubble {
   position: absolute; top: 26px; right: calc(100% - 18px); width: 170px;
   background: var(--ink); color: var(--accent-ink) !important;
