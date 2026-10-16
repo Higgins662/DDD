@@ -4,9 +4,21 @@ import { getDeals, categoriesFrom } from "../lib/data";
 // Render on every request so new deals show up immediately.
 export const dynamic = "force-dynamic";
 
-export default async function Home() {
+// Filtered views (?cat=...) point search engines back at the main page.
+export const metadata = { alternates: { canonical: "/" } };
+
+// "?cat=trail-camera,grill" -> ["trail-camera", "grill"], keeping only real categories.
+function parseSelected(raw, categories) {
+  const known = new Set(categories.map((c) => c.slug));
+  const values = Array.isArray(raw) ? raw.join(",") : raw || "";
+  return [...new Set(values.split(",").map((s) => s.trim()).filter((s) => known.has(s)))];
+}
+
+export default async function Home({ searchParams }) {
+  const { cat } = await searchParams;
   const deals = await getDeals();
   const categories = categoriesFrom(deals);
+  const selected = parseSelected(cat, categories);
 
   return (
     <>
@@ -23,7 +35,7 @@ export default async function Home() {
           </p>
         </div>
       </section>
-      <DealFeed deals={deals} categories={categories} />
+      <DealFeed deals={deals} categories={categories} selected={selected} />
     </>
   );
 }

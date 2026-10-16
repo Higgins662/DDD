@@ -24,8 +24,6 @@ export default async function CategoryPage({ params }) {
   const cat = categories.find((c) => c.slug === slug);
   if (!cat) notFound();
 
-  const deals = all.filter((d) => d.categorySlug === slug);
-
   return (
     <>
       <section className="hero" style={{ paddingBottom: 0 }}>
@@ -34,7 +32,7 @@ export default async function CategoryPage({ params }) {
           <p>Every price below was checked against what we've tracked for that item.</p>
         </div>
       </section>
-      <DealFeed deals={deals} categories={categories} activeSlug={slug} />
+      <DealFeed deals={all} categories={categories} selected={[slug]} />
     </>
   );
 }
