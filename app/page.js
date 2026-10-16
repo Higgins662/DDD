@@ -22,17 +22,30 @@ export default async function Home({ searchParams }) {
 
   return (
     <>
-      <section className="hero">
-        <div className="wrap">
-          <p className="eyebrow">Field notes · Live observations</p>
-          <h1>
-            The drop. <em>Posted only when it's real.</em>
-          </h1>
-          <p>
-            We track prices on gear, tools, outdoor and tech every day. A deal only shows up here when
-            the price genuinely falls below what we've seen, not when a store invents a fake "was"
-            price.
-          </p>
+      <section className="hero hero-with-dad">
+        <div className="wrap hero-grid">
+          <div className="hero-copy">
+            <p className="eyebrow">Field notes · Live observations</p>
+            <h1>
+              The drop. <em>Posted only when it's real.</em>
+            </h1>
+            <p>
+              We track prices on gear, tools, outdoor and tech every day. A deal only shows up here
+              when the price genuinely falls below what we've seen, not when a store invents a fake
+              "was" price.
+            </p>
+          </div>
+          <figure className="hero-dad">
+            <p className="hero-bubble">I check the prices so you don't have to.</p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/dropdad.webp"
+              alt="The DropDad waving hello"
+              width="568"
+              height="760"
+              fetchPriority="high"
+            />
+          </figure>
         </div>
       </section>
       <DealFeed deals={deals} categories={categories} selected={selected} />
