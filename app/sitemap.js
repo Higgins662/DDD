@@ -1,4 +1,5 @@
 import { getDeals, categoriesFrom, SITE_URL } from "../lib/data";
+import { addDays, buildDaily, todayKey, weekKey } from "../lib/roundup";
 
 // Render on every request so new deals show up immediately.
 export const dynamic = "force-dynamic";
@@ -6,9 +7,17 @@ export const dynamic = "force-dynamic";
 export default async function sitemap() {
   const deals = await getDeals();
   const cats = categoriesFrom(deals);
+  const today = todayKey();
+  const roundupDays = Array.from({ length: 14 }, (_, i) => addDays(today, -i)).filter(
+    (k) => buildDaily(deals, k).freshCount
+  );
+  const roundupWeeks = [...new Set(roundupDays.map(weekKey))];
   return [
     { url: `${SITE_URL}/`, changeFrequency: "hourly", priority: 1 },
     { url: `${SITE_URL}/about`, changeFrequency: "monthly", priority: 0.3 },
+    { url: `${SITE_URL}/roundups`, changeFrequency: "daily", priority: 0.8 },
+    ...roundupDays.map((k) => ({ url: `${SITE_URL}/roundup/daily/${k}`, changeFrequency: "daily", priority: 0.6 })),
+    ...roundupWeeks.map((k) => ({ url: `${SITE_URL}/roundup/weekly/${k}`, changeFrequency: "daily", priority: 0.7 })),
     { url: `${SITE_URL}/privacy`, changeFrequency: "yearly", priority: 0.2 },
     { url: `${SITE_URL}/disclosure`, changeFrequency: "yearly", priority: 0.2 },
     ...cats.map((c) => ({ url: `${SITE_URL}/category/${c.slug}`, changeFrequency: "daily", priority: 0.7 })),

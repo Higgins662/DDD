@@ -77,6 +77,7 @@ export default async function AdminPage({ searchParams }) {
           <div>Newest item: <strong>{when(lastRun) || "—"}</strong></div>
           <div>Last price check: <strong>{when(lastCheck) || "—"}</strong></div>
           <div className="adm-tz">Times are Eastern</div>
+          <div><Link href="/admin/roundups">Roundup share kit →</Link></div>
         </div>
       </div>
 
