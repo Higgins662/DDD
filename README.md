@@ -2,7 +2,7 @@
 
 The website for DropDadDeals. It shows the deals the price tracker writes to Supabase, with a price-history chart on every deal page.
 
-Live at https://realpricedrops.vercel.app (the Vercel project and URL still use the old name `realpricedrops`).
+Live at https://dropdaddeals.com. `www.dropdaddeals.com` and the original `realpricedrops.vercel.app` address permanently redirect there (see `next.config.mjs`). The Vercel project itself is still named `realpricedrops`.
 
 ## Deploying
 
@@ -17,7 +17,7 @@ The Vercel project is connected to this repo. Every push to `main` deploys to th
   - `public_price_history`: price checks for those deals only.
 
   The publishable key in `lib/data.js` can read only these views. It can't read or change any other table. You can override it with the `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` environment variables.
-- Set `SITE_URL` in Vercel once a custom domain is added, so the sitemap and link previews use it.
+- Canonical links, the sitemap and link previews use `https://dropdaddeals.com` (`SITE_URL` in `lib/data.js`; override with the `SITE_URL` environment variable).
 
 ## What's where
 
