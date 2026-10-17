@@ -9,6 +9,8 @@ export default async function sitemap() {
   return [
     { url: `${SITE_URL}/`, changeFrequency: "hourly", priority: 1 },
     { url: `${SITE_URL}/about`, changeFrequency: "monthly", priority: 0.3 },
+    { url: `${SITE_URL}/privacy`, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${SITE_URL}/disclosure`, changeFrequency: "yearly", priority: 0.2 },
     ...cats.map((c) => ({ url: `${SITE_URL}/category/${c.slug}`, changeFrequency: "daily", priority: 0.7 })),
     ...deals
       .filter((d) => !d.priceRoseAfterDeal)

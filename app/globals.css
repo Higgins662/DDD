@@ -166,6 +166,9 @@ img { max-width: 100%; display: block; }
 .prose h1 { font-family: var(--serif); font-size: 38px; font-weight: 700; line-height: 1.05; margin: 0 0 18px; }
 .prose p { font-size: 17px; }
 .prose h2 { font-family: var(--serif); font-size: 24px; margin: 32px 0 8px; }
+.prose ul { font-size: 17px; padding-left: 22px; }
+.prose li { margin: 0 0 8px; }
+.prose-meta { color: var(--muted); font-family: var(--mono); font-size: 13px !important; text-transform: uppercase; letter-spacing: 0.08em; }
 .prose a { color: var(--accent); }
 
 /* Footer */

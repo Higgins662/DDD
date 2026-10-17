@@ -54,7 +54,11 @@ export default function RootLayout({ children }) {
               Prices change often. The price you see at the store when you click is the one that
               applies.
             </p>
-            <p style={{ margin: 0 }}>© {new Date().getFullYear()} DropDadDeals</p>
+            <p style={{ margin: 0 }}>
+              © {new Date().getFullYear()} DropDadDeals ·{" "}
+              <Link href="/privacy">Privacy policy</Link> ·{" "}
+              <Link href="/disclosure">Affiliate disclosure</Link>
+            </p>
           </div>
         </footer>
       </body>
