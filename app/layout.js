@@ -9,6 +9,7 @@ import "@fontsource/ibm-plex-mono/latin-600.css";
 import "./globals.css";
 import { SITE_URL } from "../lib/data";
 import GoogleAnalytics from "../components/GoogleAnalytics";
+import { FACEBOOK_URL } from "../lib/brand";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -59,7 +60,10 @@ export default function RootLayout({ children }) {
             <p style={{ margin: 0 }}>
               © {new Date().getFullYear()} DropDadDeals ·{" "}
               <Link href="/privacy">Privacy policy</Link> ·{" "}
-              <Link href="/disclosure">Affiliate disclosure</Link>
+              <Link href="/disclosure">Affiliate disclosure</Link> ·{" "}
+              <a href={FACEBOOK_URL} target="_blank" rel="noopener me">
+                Facebook
+              </a>
             </p>
           </div>
         </footer>

@@ -109,7 +109,7 @@ export default function Privacy() {
         </p>
         <p>
           <strong>To request deletion of your data</strong>, including any data related to our
-          Facebook app, send a message to the DropDadDeals Facebook Page with the subject "Delete my
+          Facebook app, send a message to the <a href="https://www.facebook.com/dropdaddeals" target="_blank" rel="noopener">DropDadDeals Facebook Page</a> with the subject "Delete my
           data". Tell us the name or account you used to contact us. We'll delete what we hold within
           30 days and confirm once it's done. Because our Facebook app doesn't collect data from
           people who interact with our Page, in most cases there will be nothing to delete beyond
@@ -138,8 +138,8 @@ export default function Privacy() {
 
         <h2>Contact us</h2>
         <p>
-          Questions about this policy or your data? Send a message to the DropDadDeals Facebook
-          Page. See also our <Link href="/disclosure">affiliate disclosure</Link>.
+          Questions about this policy or your data? Send a message to the{" "}
+          <a href="https://www.facebook.com/dropdaddeals" target="_blank" rel="noopener">DropDadDeals Facebook Page</a>. See also our <Link href="/disclosure">affiliate disclosure</Link>.
         </p>
       </div>
     </div>

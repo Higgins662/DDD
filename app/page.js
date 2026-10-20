@@ -1,5 +1,6 @@
 import DealFeed from "../components/DealFeed";
 import { getDeals, categoriesFrom, SITE_URL } from "../lib/data";
+import { FACEBOOK_URL } from "../lib/brand";
 
 // Render on every request so new deals show up immediately.
 export const dynamic = "force-dynamic";
@@ -26,6 +27,7 @@ const siteJsonLd = {
       name: "DropDadDeals",
       url: `${SITE_URL}/`,
       logo: { "@type": "ImageObject", url: `${SITE_URL}/logo-512.png`, width: 512, height: 512 },
+      sameAs: [FACEBOOK_URL],
     },
   ],
 };
