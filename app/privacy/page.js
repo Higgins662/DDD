@@ -4,6 +4,8 @@ export const metadata = {
   title: "Privacy policy",
   description: "How DropDadDeals collects, uses and protects information.",
   alternates: { canonical: "/privacy" },
+  // Keep legal pages out of search results; Meta and visitors can still open them.
+  robots: { index: false, follow: true },
 };
 
 const EFFECTIVE = "October 16, 2026";

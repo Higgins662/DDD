@@ -1,6 +1,8 @@
 export const metadata = {
   title: "Affiliate disclosure",
   description: "How DropDadDeals makes money.",
+  alternates: { canonical: "/disclosure" },
+  robots: { index: false, follow: true },
 };
 
 export default function Disclosure() {

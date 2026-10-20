@@ -18,8 +18,6 @@ export default async function sitemap() {
     { url: `${SITE_URL}/roundups`, changeFrequency: "daily", priority: 0.8 },
     ...roundupDays.map((k) => ({ url: `${SITE_URL}/roundup/daily/${k}`, changeFrequency: "daily", priority: 0.6 })),
     ...roundupWeeks.map((k) => ({ url: `${SITE_URL}/roundup/weekly/${k}`, changeFrequency: "daily", priority: 0.7 })),
-    { url: `${SITE_URL}/privacy`, changeFrequency: "yearly", priority: 0.2 },
-    { url: `${SITE_URL}/disclosure`, changeFrequency: "yearly", priority: 0.2 },
     ...cats.map((c) => ({ url: `${SITE_URL}/category/${c.slug}`, changeFrequency: "daily", priority: 0.7 })),
     ...deals
       .filter((d) => !d.priceRoseAfterDeal)

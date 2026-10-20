@@ -18,6 +18,7 @@ export const metadata = {
   },
   description:
     "Real price drops on gear, tools, outdoor and tech, checked against our own price history so you know a deal is actually a deal.",
+  applicationName: "DropDadDeals",
   openGraph: { type: "website", siteName: "DropDadDeals" },
   twitter: { card: "summary_large_image" },
 };

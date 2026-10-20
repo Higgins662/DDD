@@ -1,11 +1,34 @@
 import DealFeed from "../components/DealFeed";
-import { getDeals, categoriesFrom } from "../lib/data";
+import { getDeals, categoriesFrom, SITE_URL } from "../lib/data";
 
 // Render on every request so new deals show up immediately.
 export const dynamic = "force-dynamic";
 
 // Filtered views (?cat=...) point search engines back at the main page.
 export const metadata = { alternates: { canonical: "/" } };
+
+// Tells Google the site's name and logo, so search results say "DropDadDeals"
+// instead of the bare domain. https://developers.google.com/search/docs/appearance/site-names
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: "DropDadDeals",
+      alternateName: ["Drop Dad Deals", "DDD"],
+      url: `${SITE_URL}/`,
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "DropDadDeals",
+      url: `${SITE_URL}/`,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo-512.png`, width: 512, height: 512 },
+    },
+  ],
+};
 
 // "?cat=trail-camera,grill" -> ["trail-camera", "grill"], keeping only real categories.
 function parseSelected(raw, categories) {
@@ -22,6 +45,7 @@ export default async function Home({ searchParams }) {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }} />
       <section className="hero hero-with-dad">
         <div className="wrap hero-grid">
           <div className="hero-copy">
