@@ -10,6 +10,7 @@ import "./globals.css";
 import { SITE_URL } from "../lib/data";
 import GoogleAnalytics from "../components/GoogleAnalytics";
 import { FACEBOOK_URL } from "../lib/brand";
+import { HeaderFollow } from "../components/FollowFacebook";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -42,6 +43,7 @@ export default function RootLayout({ children }) {
               <Link href="/">Deals</Link>
               <Link href="/roundups">Roundups</Link>
               <Link href="/about">How it works</Link>
+              <HeaderFollow />
             </nav>
           </div>
         </header>

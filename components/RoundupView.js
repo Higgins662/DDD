@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { money, storeName } from "../lib/data";
 import { facts, historyNote, shortTitle } from "../lib/roundup";
+import FollowFacebook from "./FollowFacebook";
 
 function RoundupItem({ d, n }) {
   const store = storeName(d.source);
@@ -78,6 +79,8 @@ export default function RoundupView({ r, otherLink }) {
           </ol>
         </section>
       ))}
+
+      <FollowFacebook variant="card" where="roundup" />
 
       <nav className="ru-nav" aria-label="More roundups">
         <Link href={r.prev}>← {r.kind === "daily" ? "Previous day" : "Previous week"}</Link>

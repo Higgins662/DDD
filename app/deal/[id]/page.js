@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PriceChart, { HistoryList } from "../../../components/PriceChart";
+import FollowFacebook from "../../../components/FollowFacebook";
 import { getDeal, money, storeName, titleCase, timeAgo } from "../../../lib/data";
 
 // Render on every request so new deals show up immediately.
@@ -111,6 +112,8 @@ export default async function DealPage({ params }) {
             Affiliate link: we may earn a commission if you buy, at no extra cost to you. Prices can
             change at any time, so check the final price on {store}.
           </p>
+
+          <FollowFacebook variant="card" where="deal" />
 
           {deal.history.length > 0 && (
             <section className="panel">

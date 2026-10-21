@@ -42,14 +42,14 @@ img { max-width: 100%; display: block; }
 /* Header */
 .site-header { border-bottom: 1px solid var(--line); background: rgba(35, 37, 39, 0.92); backdrop-filter: blur(6px); position: sticky; top: 0; z-index: 10; }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand { flex: none; display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .brand img { width: 44px; height: 37px; }
 .brand-name { font-family: var(--serif); font-size: 24px; font-weight: 700; letter-spacing: -0.01em; line-height: 1; }
 .brand-name span { color: var(--accent); }
 .site-nav { display: flex; gap: 18px; font-size: 13px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.08em; }
 .site-nav a { text-decoration: none; color: var(--muted); }
 .site-nav a:hover { color: var(--accent); }
-@media (max-width: 480px) { .site-nav a:first-child, .site-nav a:last-child { display: none; } }
+@media (max-width: 480px) { .site-nav a:first-child, .site-nav a[href="/about"] { display: none; } }
 .site-nav a { white-space: nowrap; }
 
 /* Hero */
@@ -278,3 +278,61 @@ img { max-width: 100%; display: block; }
 .kit-text { width: 100%; background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 10px; font-family: var(--mono); font-size: 12.5px; line-height: 1.5; resize: vertical; }
 .kit-hint { font-size: 12px; color: var(--muted); margin: 0; }
 .adm code { font-family: var(--mono); font-size: 12px; background: var(--surface); padding: 1px 5px; border-radius: 4px; }
+
+/* Facebook follow (header button + call-to-action blocks) */
+.fb-icon { width: 1.1em; height: 1.1em; flex: none; display: block; }
+.site-nav { align-items: center; }
+.site-nav a.nav-follow {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent); color: var(--accent-ink); font-weight: 600;
+  padding: 6px 11px; border-radius: 999px; letter-spacing: 0.06em;
+}
+.site-nav a.nav-follow:hover { color: var(--accent-ink); filter: brightness(1.08); }
+@media (max-width: 480px) {
+  .site-header .wrap { gap: 8px; }
+  .site-nav { gap: 12px; }
+  .site-nav a.nav-follow { padding: 6px 10px; }
+}
+@media (max-width: 419px) { .nav-follow-text { display: none; } .site-nav a.nav-follow { padding: 7px; } }
+
+.follow {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: 92px minmax(0, 1fr) auto; align-items: center; gap: 18px;
+  background: var(--surface); border: 2px solid var(--accent); border-radius: 14px;
+  padding: 16px 22px 0 16px;
+}
+.follow-dad { width: 92px; height: auto; align-self: end; }
+.follow-copy { padding-bottom: 16px; }
+.follow-kicker { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin: 0 0 4px; }
+.follow-title { font-family: var(--serif); font-weight: 700; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.1; margin: 0; color: var(--ink); }
+.follow-sub { font-size: 14px; color: var(--muted); margin: 6px 0 0; max-width: 560px; }
+.follow-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  background: var(--accent); color: var(--accent-ink); text-decoration: none; white-space: nowrap;
+  font-weight: 700; font-size: 16px; padding: 13px 20px; border-radius: 10px; margin-bottom: 16px;
+}
+.follow-btn:hover { filter: brightness(1.08); }
+.follow-btn .fb-icon { width: 20px; height: 20px; }
+.follow-banner { margin-top: 22px; }
+.follow-card { margin-top: 22px; grid-template-columns: 72px minmax(0, 1fr); gap: 4px 14px; padding: 14px 16px 0 12px; }
+.follow-card .follow-dad { width: 72px; grid-row: 1 / span 2; }
+.follow-card .follow-copy { padding-bottom: 0; }
+.follow-card .follow-title { font-size: 20px; }
+.follow-card .follow-btn { justify-self: start; margin-top: 10px; }
+.ru .follow-card { margin: 32px 0 0; }
+@media (max-width: 720px) {
+  .follow { grid-template-columns: 72px minmax(0, 1fr); gap: 4px 14px; padding: 14px 16px 0 12px; }
+  .follow-dad { width: 72px; grid-row: 1 / span 2; }
+  .follow-copy { padding-bottom: 0; }
+  .follow-btn { justify-self: start; margin-top: 10px; font-size: 15px; padding: 11px 16px; }
+}
+@media (max-width: 420px) {
+  .follow-btn { justify-self: stretch; }
+  .follow-sub { font-size: 13px; }
+}
+/* Home page on phones: the big DropDad is right above, so drop the small one. */
+@media (max-width: 640px) {
+  .follow-banner { grid-template-columns: minmax(0, 1fr); padding: 16px; }
+  .follow-banner .follow-dad { display: none; }
+  .follow-banner .follow-btn { margin-bottom: 0; }
+}

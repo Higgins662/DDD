@@ -1,6 +1,7 @@
 import DealFeed from "../components/DealFeed";
 import { getDeals, categoriesFrom, SITE_URL } from "../lib/data";
 import { FACEBOOK_URL } from "../lib/brand";
+import FollowFacebook from "../components/FollowFacebook";
 
 // Render on every request so new deals show up immediately.
 export const dynamic = "force-dynamic";
@@ -74,6 +75,9 @@ export default async function Home({ searchParams }) {
           </figure>
         </div>
       </section>
+      <div className="wrap">
+        <FollowFacebook variant="banner" where="home" />
+      </div>
       <DealFeed deals={deals} categories={categories} selected={selected} />
     </>
   );
