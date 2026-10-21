@@ -25,19 +25,14 @@ export function HeaderFollow() {
 // Big call-to-action block. `variant` = "banner" (home page, under the hero)
 // or "card" (deal pages and roundups).
 export default function FollowFacebook({ variant = "banner", where = "" }) {
-  const isCard = variant === "card";
   return (
     <aside className={`follow follow-${variant}`} aria-label="Follow DropDadDeals on Facebook" data-where={where}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img className="follow-dad" src="/dropdad.webp" alt="" width="568" height="760" loading="lazy" />
       <div className="follow-copy">
         <p className="follow-kicker">Also on Facebook</p>
-        <p className="follow-title">
-          {isCard ? "A few picks a day on Facebook." : "Follow DropDadDeals on Facebook."}
-        </p>
-        <p className="follow-sub">
-          {isCard ? "Posts include affiliate links." : "A few picks a day. Posts include affiliate links."}
-        </p>
+        <p className="follow-title">Follow DropDadDeals on Facebook.</p>
+        <p className="follow-sub">Deals, roundups, and more posted every day.</p>
       </div>
       <a className="follow-btn" href={FACEBOOK_URL} target="_blank" rel="noopener">
         <FacebookIcon />
