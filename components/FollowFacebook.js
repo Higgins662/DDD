@@ -31,13 +31,15 @@ export default function FollowFacebook({ variant = "banner", where = "" }) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img className="follow-dad" src="/dropdad.webp" alt="" width="568" height="760" loading="lazy" />
       <div className="follow-copy">
-        <p className="follow-kicker">{isCard ? "Don't miss the next one" : "Never miss a drop"}</p>
+        <p className="follow-kicker">Also on Facebook</p>
         <p className="follow-title">
-          {isCard ? "Get drops like this in your Facebook feed." : "Follow DropDad on Facebook."}
+          {isCard ? "We share a few picks a day on Facebook." : "Follow DropDadDeals on Facebook."}
         </p>
         <p className="follow-sub">
-          New real price drops and the daily roundup, posted to the DropDadDeals Page. Free, no
-          signup.
+          {isCard
+            ? "Not every deal gets posted there, so the full list always lives here."
+            : "We post a few of each day's price drops to our Facebook Page. Not every deal makes it there, so the full list always lives here."}{" "}
+          Following is free with a Facebook account, and posts include affiliate links.
         </p>
       </div>
       <a className="follow-btn" href={FACEBOOK_URL} target="_blank" rel="noopener">
