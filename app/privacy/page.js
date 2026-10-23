@@ -139,7 +139,7 @@ export default function Privacy() {
         <h2>Contact us</h2>
         <p>
           Questions about this policy or your data? Send a message to the{" "}
-          <a href="https://www.facebook.com/dropdaddeals" target="_blank" rel="noopener">DropDadDeals Facebook Page</a>. See also our <Link href="/disclosure">affiliate disclosure</Link>.
+          <a href="https://www.facebook.com/dropdaddeals" target="_blank" rel="noopener">DropDadDeals Facebook Page</a>. See also our <Link prefetch={false} href="/disclosure">affiliate disclosure</Link>.
         </p>
       </div>
     </div>

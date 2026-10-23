@@ -20,7 +20,7 @@ function Kit({ r }) {
           <p className="adm-sub">{r.intro}</p>
         </div>
         <div className="kit-links">
-          <Link href={r.url.replace(/^https?:\/\/[^/]+/, "")} target="_blank">Open page ↗</Link>
+          <Link prefetch={false} href={r.url.replace(/^https?:\/\/[^/]+/, "")} target="_blank">Open page ↗</Link>
           <a href={`${r.url.replace(/^https?:\/\/[^/]+/, "")}/opengraph-image`} target="_blank" rel="noopener">
             Preview image ↗
           </a>
@@ -70,7 +70,7 @@ export default async function RoundupKit({ searchParams }) {
           <h1>Roundup share kit</h1>
         </div>
         <div className="adm-meta">
-          <Link href="/admin">← Deal status</Link>
+          <Link prefetch={false} href="/admin">← Deal status</Link>
         </div>
       </div>
       <p className="adm-sub">

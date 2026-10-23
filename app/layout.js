@@ -34,15 +34,15 @@ export default function RootLayout({ children }) {
         <GoogleAnalytics />
         <header className="site-header">
           <div className="wrap">
-            <Link href="/" className="brand" aria-label="DropDadDeals home">
+            <Link prefetch={false} href="/" className="brand" aria-label="DropDadDeals home">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/logo.svg" alt="" width="44" height="37" />
               <span className="brand-name">DropDad<span>Deals</span></span>
             </Link>
             <nav className="site-nav">
-              <Link href="/">Deals</Link>
-              <Link href="/roundups">Roundups</Link>
-              <Link href="/about">How it works</Link>
+              <Link prefetch={false} href="/">Deals</Link>
+              <Link prefetch={false} href="/roundups">Roundups</Link>
+              <Link prefetch={false} href="/about">How it works</Link>
               <HeaderFollow />
             </nav>
           </div>
@@ -53,7 +53,7 @@ export default function RootLayout({ children }) {
             <p style={{ margin: 0 }}>
               <strong>Affiliate disclosure:</strong> DropDadDeals earns a commission when you buy
               through links on this site, at no extra cost to you. As an eBay Partner, we may be
-              compensated if you make a purchase. <Link href="/disclosure">Learn more</Link>.
+              compensated if you make a purchase. <Link prefetch={false} href="/disclosure">Learn more</Link>.
             </p>
             <p style={{ margin: 0 }}>
               Prices change often. The price you see at the store when you click is the one that
@@ -61,8 +61,8 @@ export default function RootLayout({ children }) {
             </p>
             <p style={{ margin: 0 }}>
               © {new Date().getFullYear()} DropDadDeals ·{" "}
-              <Link href="/privacy">Privacy policy</Link> ·{" "}
-              <Link href="/disclosure">Affiliate disclosure</Link> ·{" "}
+              <Link prefetch={false} href="/privacy">Privacy policy</Link> ·{" "}
+              <Link prefetch={false} href="/disclosure">Affiliate disclosure</Link> ·{" "}
               <a href={FACEBOOK_URL} target="_blank" rel="noopener me">
                 Facebook
               </a>

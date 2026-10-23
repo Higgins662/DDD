@@ -22,13 +22,13 @@ export default function DealFeed({ deals, categories, selected = [] }) {
     <div className="wrap">
       {categories.length > 0 && (
         <nav className="chips" aria-label="Filter by category (select any number)">
-          <Link href="/" className={`chip${selected.length ? "" : " active"}`} scroll={false}>
+          <Link prefetch={false} href="/" className={`chip${selected.length ? "" : " active"}`} scroll={false}>
             All deals
           </Link>
           {categories.map((c) => {
             const on = selected.includes(c.slug);
             return (
-              <Link
+              <Link prefetch={false}
                 key={c.slug}
                 href={hrefFor(toggle(selected, c.slug))}
                 className={`chip${on ? " active" : ""}`}
@@ -49,7 +49,7 @@ export default function DealFeed({ deals, categories, selected = [] }) {
         <p className="filter-summary">
           Showing {shown.length} deal{shown.length === 1 ? "" : "s"} in {selected.length}{" "}
           {selected.length === 1 ? "category" : "categories"} ·{" "}
-          <Link href="/" scroll={false}>Clear filter</Link>
+          <Link prefetch={false} href="/" scroll={false}>Clear filter</Link>
         </p>
       )}
 

@@ -77,7 +77,7 @@ export default async function AdminPage({ searchParams }) {
           <div>Newest item: <strong>{when(lastRun) || "—"}</strong></div>
           <div>Last price check: <strong>{when(lastCheck) || "—"}</strong></div>
           <div className="adm-tz">Times are Eastern</div>
-          <div><Link href="/admin/roundups">Roundup share kit →</Link></div>
+          <div><Link prefetch={false} href="/admin/roundups">Roundup share kit →</Link></div>
         </div>
       </div>
 
@@ -94,7 +94,7 @@ export default async function AdminPage({ searchParams }) {
 
       <nav className="chips" aria-label="Filter">
         {VIEWS.map((v) => (
-          <Link
+          <Link prefetch={false}
             key={v.key}
             href={v.key === "all" ? "/admin" : `/admin?view=${v.key}`}
             className={`chip${v.key === view.key ? " active" : ""}`}
@@ -175,7 +175,7 @@ export default async function AdminPage({ searchParams }) {
                   </td>
                   <td>
                     {d.on_site ? (
-                      <Link href={`/deal/${d.id}`} className="adm-badge adm-ready">live</Link>
+                      <Link prefetch={false} href={`/deal/${d.id}`} className="adm-badge adm-ready">live</Link>
                     ) : (
                       <span className="adm-badge adm-none">hidden</span>
                     )}

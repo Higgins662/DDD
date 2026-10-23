@@ -9,7 +9,7 @@ function RoundupItem({ d, n }) {
   return (
     <li className="ru-item">
       <div className="ru-rank" aria-hidden="true">{String(n).padStart(2, "0")}</div>
-      <Link href={`/deal/${d.id}`} className="ru-img" tabIndex={-1} aria-hidden="true">
+      <Link prefetch={false} href={`/deal/${d.id}`} className="ru-img" tabIndex={-1} aria-hidden="true">
         {d.image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={d.image} alt="" loading="lazy" />
@@ -18,7 +18,7 @@ function RoundupItem({ d, n }) {
       <div className="ru-body">
         <div className="ru-store">{store}</div>
         <h3 className="ru-title">
-          <Link href={`/deal/${d.id}`}>{shortTitle(d.title)}</Link>
+          <Link prefetch={false} href={`/deal/${d.id}`}>{shortTitle(d.title)}</Link>
         </h3>
         <div className="ru-prices">
           <span className="price-now">{money(d.priceNow)}</span>
@@ -40,7 +40,7 @@ function RoundupItem({ d, n }) {
           <a className="ru-cta" href={d.url} target="_blank" rel="sponsored nofollow noopener">
             See it on {store} →
           </a>
-          <Link href={`/deal/${d.id}`} className="ru-link">Price history</Link>
+          <Link prefetch={false} href={`/deal/${d.id}`} className="ru-link">Price history</Link>
         </div>
       </div>
     </li>
@@ -83,16 +83,16 @@ export default function RoundupView({ r, otherLink }) {
       <FollowFacebook variant="card" where="roundup" />
 
       <nav className="ru-nav" aria-label="More roundups">
-        <Link href={r.prev}>← {r.kind === "daily" ? "Previous day" : "Previous week"}</Link>
-        <Link href="/roundups">All roundups</Link>
-        {otherLink ? <Link href={otherLink.href}>{otherLink.label}</Link> : null}
-        {r.next ? <Link href={r.next}>{r.kind === "daily" ? "Next day" : "Next week"} →</Link> : <span />}
+        <Link prefetch={false} href={r.prev}>← {r.kind === "daily" ? "Previous day" : "Previous week"}</Link>
+        <Link prefetch={false} href="/roundups">All roundups</Link>
+        {otherLink ? <Link prefetch={false} href={otherLink.href}>{otherLink.label}</Link> : null}
+        {r.next ? <Link prefetch={false} href={r.next}>{r.kind === "daily" ? "Next day" : "Next week"} →</Link> : <span />}
       </nav>
 
       <p className="ru-disclose">
         Affiliate links: DropDadDeals earns a commission when you buy, at no extra cost to you.
         Prices change often, and the price at checkout is the one that applies.{" "}
-        <Link href="/disclosure">Learn more</Link>.
+        <Link prefetch={false} href="/disclosure">Learn more</Link>.
       </p>
     </div>
   );

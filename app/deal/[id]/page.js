@@ -50,11 +50,11 @@ export default async function DealPage({ params }) {
     <div className="wrap">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="crumbs">
-        <Link href="/">Deals</Link>
+        <Link prefetch={false} href="/">Deals</Link>
         {deal.category ? (
           <>
             {" / "}
-            <Link href={`/category/${deal.categorySlug}`}>{titleCase(deal.category)}</Link>
+            <Link prefetch={false} href={`/category/${deal.categorySlug}`}>{titleCase(deal.category)}</Link>
           </>
         ) : null}
       </div>

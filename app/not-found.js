@@ -5,7 +5,7 @@ export default function NotFound() {
     <div className="wrap">
       <div className="prose">
         <h1>That deal isn't here</h1>
-        <p>It may have ended or been removed. <Link href="/">See the latest price drops</Link>.</p>
+        <p>It may have ended or been removed. <Link prefetch={false} href="/">See the latest price drops</Link>.</p>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { money, storeName, timeAgo } from "../lib/data";
 export default function DealCard({ deal }) {
   const pct = deal.discountPct ? Math.round(deal.discountPct) : null;
   return (
-    <Link href={`/deal/${deal.id}`} className="card">
+    <Link prefetch={false} href={`/deal/${deal.id}`} className="card">
       <div className="card-img">
         {deal.image ? (
           // eslint-disable-next-line @next/next/no-img-element
