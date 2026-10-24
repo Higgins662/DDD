@@ -336,3 +336,15 @@ img { max-width: 100%; display: block; }
   .follow-banner .follow-dad { display: none; }
   .follow-banner .follow-btn { margin-bottom: 0; }
 }
+
+/* Amazon storefront card: same shape as the Facebook block, quieter cream outline. */
+.follow-amazon { grid-template-columns: minmax(0, 1fr) auto; border-color: var(--ink); margin-top: 14px; padding: 16px 22px 0; }
+.follow-amazon .follow-kicker { color: var(--ink); opacity: 0.75; }
+.follow-amazon .follow-btn { background: var(--ink); color: var(--bg); }
+.ru .follow-amazon { margin: 14px 0 0; }
+.ru .follow-amazon .follow-title { font-size: 20px; }
+@media (max-width: 720px) {
+  .follow-amazon { grid-template-columns: minmax(0, 1fr); padding: 14px 16px 0; }
+  .follow-amazon .follow-copy { padding-bottom: 0; }
+}
+@media (max-width: 640px) { .follow-amazon { padding: 16px; } .follow-amazon .follow-btn { margin-bottom: 0; } }

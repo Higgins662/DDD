@@ -2,6 +2,7 @@ import Link from "next/link";
 import { money, storeName } from "../lib/data";
 import { facts, historyNote, shortTitle } from "../lib/roundup";
 import FollowFacebook from "./FollowFacebook";
+import AmazonStorefront from "./AmazonStorefront";
 
 function RoundupItem({ d, n }) {
   const store = storeName(d.source);
@@ -81,6 +82,7 @@ export default function RoundupView({ r, otherLink }) {
       ))}
 
       <FollowFacebook variant="card" where="roundup" />
+      <AmazonStorefront where="roundup" />
 
       <nav className="ru-nav" aria-label="More roundups">
         <Link prefetch={false} href={r.prev}>← {r.kind === "daily" ? "Previous day" : "Previous week"}</Link>

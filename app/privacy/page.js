@@ -80,7 +80,7 @@ export default function Privacy() {
             .
           </li>
           <li>
-            <strong>Affiliate programs</strong>, including the eBay Partner Network. When you click a
+            <strong>Affiliate programs</strong>, including the eBay Partner Network and Amazon Associates. When you click a
             link to a store, that store and the affiliate network may record the click so we can be
             credited for a purchase. Their own privacy policies apply once you're on their sites.
           </li>

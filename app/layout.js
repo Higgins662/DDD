@@ -9,7 +9,7 @@ import "@fontsource/ibm-plex-mono/latin-600.css";
 import "./globals.css";
 import { SITE_URL } from "../lib/data";
 import GoogleAnalytics from "../components/GoogleAnalytics";
-import { FACEBOOK_URL } from "../lib/brand";
+import { FACEBOOK_URL, AMAZON_STOREFRONT_URL } from "../lib/brand";
 import { HeaderFollow } from "../components/FollowFacebook";
 
 export const metadata = {
@@ -53,7 +53,8 @@ export default function RootLayout({ children }) {
             <p style={{ margin: 0 }}>
               <strong>Affiliate disclosure:</strong> DropDadDeals earns a commission when you buy
               through links on this site, at no extra cost to you. As an eBay Partner, we may be
-              compensated if you make a purchase. <Link prefetch={false} href="/disclosure">Learn more</Link>.
+              compensated if you make a purchase. As an Amazon Associate I earn from qualifying
+              purchases. <Link prefetch={false} href="/disclosure">Learn more</Link>.
             </p>
             <p style={{ margin: 0 }}>
               Prices change often. The price you see at the store when you click is the one that
@@ -65,6 +66,9 @@ export default function RootLayout({ children }) {
               <Link prefetch={false} href="/disclosure">Affiliate disclosure</Link> ·{" "}
               <a href={FACEBOOK_URL} target="_blank" rel="noopener me">
                 Facebook
+              </a> ·{" "}
+              <a href={AMAZON_STOREFRONT_URL} target="_blank" rel="sponsored noopener">
+                Amazon storefront
               </a>
             </p>
           </div>

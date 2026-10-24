@@ -16,6 +16,10 @@ export default function Disclosure() {
           commission. This comes at no extra cost to you.
         </p>
         <p>
+          DropDadDeals also has an Amazon storefront and shares Amazon picks on Facebook. As an
+          Amazon Associate I earn from qualifying purchases.
+        </p>
+        <p>
           Commissions help keep the site running. They don't affect which deals we post: a deal
           appears only when our own price tracking shows a real price drop.
         </p>
