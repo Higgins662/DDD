@@ -24,7 +24,7 @@ export default function AmazonStorefront({ where = "" }) {
     <aside className="follow follow-amazon" aria-label="DropDadDeals Amazon storefront" data-where={where}>
       <div className="follow-copy">
         <p className="follow-kicker">Also on Amazon</p>
-        <p className="follow-title">Shop the DropDad storefront.</p>
+        <p className="follow-title">Shop the DropDadDeals Amazon storefront.</p>
         <p className="follow-sub">
           Our Amazon picks, all in one place. As an Amazon Associate I earn from qualifying
           purchases.

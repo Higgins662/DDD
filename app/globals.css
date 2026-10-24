@@ -348,3 +348,20 @@ img { max-width: 100%; display: block; }
   .follow-amazon .follow-copy { padding-bottom: 0; }
 }
 @media (max-width: 640px) { .follow-amazon { padding: 16px; } .follow-amazon .follow-btn { margin-bottom: 0; } }
+
+/* Facebook + Amazon cards: stacked on phones/tablets, side by side on desktop. */
+.cta-pair { display: grid; gap: 14px; margin-top: 22px; }
+.cta-pair > .follow { margin: 0; }
+.ru .cta-pair { margin-top: 32px; }
+@media (min-width: 900px) {
+  .cta-pair { grid-template-columns: 1fr 1fr; align-items: stretch; }
+  .cta-pair > .follow {
+    grid-template-columns: minmax(0, 1fr); grid-template-rows: 1fr auto;
+    align-items: start; gap: 4px 16px; padding: 16px 20px 0;
+  }
+  .cta-pair > .follow:has(.follow-dad) { grid-template-columns: 80px minmax(0, 1fr); padding-left: 12px; }
+  .cta-pair .follow-dad { width: 80px; grid-row: 1 / span 2; display: block; }
+  .cta-pair .follow-copy { padding-bottom: 0; }
+  .cta-pair .follow-title { font-size: 22px; }
+  .cta-pair .follow-btn { justify-self: start; margin-top: 12px; }
+}

@@ -81,8 +81,10 @@ export default function RoundupView({ r, otherLink }) {
         </section>
       ))}
 
-      <FollowFacebook variant="card" where="roundup" />
-      <AmazonStorefront where="roundup" />
+      <div className="cta-pair">
+        <FollowFacebook variant="card" where="roundup" />
+        <AmazonStorefront where="roundup" />
+      </div>
 
       <nav className="ru-nav" aria-label="More roundups">
         <Link prefetch={false} href={r.prev}>← {r.kind === "daily" ? "Previous day" : "Previous week"}</Link>

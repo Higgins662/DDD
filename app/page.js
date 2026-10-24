@@ -77,8 +77,10 @@ export default async function Home({ searchParams }) {
         </div>
       </section>
       <div className="wrap">
-        <FollowFacebook variant="banner" where="home" />
-        <AmazonStorefront where="home" />
+        <div className="cta-pair">
+          <FollowFacebook variant="banner" where="home" />
+          <AmazonStorefront where="home" />
+        </div>
       </div>
       <DealFeed deals={deals} categories={categories} selected={selected} />
     </>
