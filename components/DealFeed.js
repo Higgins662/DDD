@@ -6,7 +6,7 @@ import { titleCase } from "../lib/data";
 // Selecting nothing (or "All deals") goes back to the unfiltered home page.
 function hrefFor(selected) {
   if (!selected.length) return "/";
-  return `/?cat=${selected.map(encodeURIComponent).join(",")}`;
+  return `/?cat=${[...selected].sort().map(encodeURIComponent).join(",")}`;
 }
 
 function toggle(selected, slug) {

@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import DealFeed from "../components/DealFeed";
 import { getDeals, categoriesFrom, SITE_URL } from "../lib/data";
 import { FACEBOOK_URL } from "../lib/brand";
@@ -46,6 +47,13 @@ export default async function Home({ searchParams }) {
   const deals = await getDeals();
   const categories = categoriesFrom(deals);
   const selected = parseSelected(cat, categories);
+
+  // One address per selection: sorted, no duplicates or unknown names.
+  if (cat !== undefined) {
+    const clean = [...selected].sort().join(",");
+    const raw = Array.isArray(cat) ? cat.join(",") : cat;
+    if (raw !== clean) redirect(clean ? `/?cat=${clean}` : "/");
+  }
 
   return (
     <>
