@@ -52,6 +52,7 @@ export default async function Home({ searchParams }) {
   if (cat !== undefined) {
     const clean = [...selected].sort().join(",");
     const raw = Array.isArray(cat) ? cat.join(",") : cat;
+    if (selected.length === 1) redirect(`/category/${clean}`);
     if (raw !== clean) redirect(clean ? `/?cat=${clean}` : "/");
   }
 
