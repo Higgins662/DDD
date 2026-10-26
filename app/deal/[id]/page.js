@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import PriceChart, { HistoryList } from "../../../components/PriceChart";
 import FollowFacebook from "../../../components/FollowFacebook";
 import { getDeal, money, storeName, titleCase, timeAgo } from "../../../lib/data";
+import { shortTitle } from "../../../lib/roundup";
+import { dealTitle, dealDescription } from "../../../lib/seo";
 
 // Render on every request so new deals show up immediately.
 export const dynamic = "force-dynamic";
@@ -11,14 +13,13 @@ export async function generateMetadata({ params }) {
   const { id } = await params;
   const deal = await getDeal(id);
   if (!deal) return { title: "Deal not found" };
-  const desc = `${deal.title} — now ${money(deal.priceNow)}${
-    deal.previous ? `, down from ${money(deal.previous)}` : ""
-  } at ${storeName(deal.source)}.`;
+  const title = dealTitle(deal);
+  const desc = dealDescription(deal, storeName(deal.source));
   return {
-    title: deal.title,
+    title,
     description: desc,
     alternates: { canonical: `/deal/${deal.id}` },
-    openGraph: { title: deal.title, description: desc, images: deal.image ? [deal.image] : [] },
+    openGraph: { title, description: desc, images: deal.image ? [deal.image] : [] },
     robots: deal.priceRoseAfterDeal ? { index: false, follow: true } : undefined,
   };
 }
@@ -69,7 +70,8 @@ export default async function DealPage({ params }) {
 
         <div>
           <div className="deal-store">{store}</div>
-          <h1>{deal.title}</h1>
+          <h1>{shortTitle(deal.title)}</h1>
+          {deal.title.length - shortTitle(deal.title).length > 10 ? <p className="deal-listing">Listing: {deal.title}</p> : null}
 
           {deal.priceRoseAfterDeal ? (
             <p className="notice">
@@ -117,7 +119,7 @@ export default async function DealPage({ params }) {
 
           {deal.history.length > 0 && (
             <section className="panel">
-              <h2>Price history</h2>
+              <h2>{shortTitle(deal.title)} price history</h2>
               <p className="sub">
                 {deal.history.length} price check{deal.history.length === 1 ? "" : "s"}
                 {deal.lowest !== null && deal.highest !== null && deal.lowest !== deal.highest

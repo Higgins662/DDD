@@ -15,11 +15,11 @@ import { HeaderFollow } from "../components/FollowFacebook";
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "DropDadDeals — real price drops, posted only when they're real",
+    default: "DropDadDeals | Real Price Drops on Tools, Outdoor Gear & Tech",
     template: "%s · DropDadDeals",
   },
   description:
-    "Real price drops on gear, tools, outdoor and tech, checked against our own price history so you know a deal is actually a deal.",
+    "Daily deals on tools, outdoor and hunting gear, tech and men's clothing, checked against real price history so you know the discount is real.",
   applicationName: "DropDadDeals",
   openGraph: { type: "website", siteName: "DropDadDeals" },
   twitter: { card: "summary_large_image" },

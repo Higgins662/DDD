@@ -13,7 +13,7 @@ function toggle(selected, slug) {
   return selected.includes(slug) ? selected.filter((s) => s !== slug) : [...selected, slug];
 }
 
-export default function DealFeed({ deals, categories, selected = [] }) {
+export default function DealFeed({ deals, categories, selected = [], emptyCategory = null }) {
   const shown = selected.length ? deals.filter((d) => selected.includes(d.categorySlug)) : deals;
   const live = shown.filter((d) => !d.priceRoseAfterDeal);
   const ended = shown.filter((d) => d.priceRoseAfterDeal);
@@ -52,6 +52,10 @@ export default function DealFeed({ deals, categories, selected = [] }) {
           <Link prefetch={false} href="/" scroll={false}>Clear filter</Link>
         </p>
       )}
+
+      {emptyCategory ? (
+        <p className="empty">Here's everything else we're tracking right now.</p>
+      ) : null}
 
       {live.length === 0 && ended.length === 0 ? (
         <p className="empty">No deals here right now. New price drops are added throughout the day.</p>

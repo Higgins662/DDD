@@ -365,3 +365,5 @@ img { max-width: 100%; display: block; }
   .cta-pair .follow-title { font-size: 22px; }
   .cta-pair .follow-btn { justify-self: start; margin-top: 12px; }
 }
+
+.deal-listing { font-size: 13px; color: var(--muted); margin: -6px 0 14px; }

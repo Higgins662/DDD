@@ -1,7 +1,8 @@
 import { notFound, redirect } from "next/navigation";
 import RoundupView from "../../../../components/RoundupView";
 import { getDeals } from "../../../../lib/data";
-import { buildWeekly, isWeekKey, todayKey, weekKey, weekDays, shortTitle } from "../../../../lib/roundup";
+import { buildWeekly, isWeekKey, todayKey, weekKey, weekDays, weekLabel, shortTitle } from "../../../../lib/roundup";
+import { weeklyTitle } from "../../../../lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }) {
   const r = await load(week);
   const desc = r.best ? `${r.intro} Top pick: ${shortTitle(r.best.title)}.` : r.intro;
   return {
-    title: r.title,
+    title: weeklyTitle(r, weekLabel(week)),
     description: desc,
     alternates: { canonical: `/roundup/weekly/${week}` },
     openGraph: { title: `${r.title} | DropDadDeals`, description: desc, type: "article" },

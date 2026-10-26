@@ -66,9 +66,9 @@ export default async function Home({ searchParams }) {
               The drop. <em>Posted only when it's real.</em>
             </h1>
             <p>
-              We track prices on gear, tools, outdoor and tech every day. A deal only shows up here
-              when the price genuinely falls below what we've seen, not when a store invents a fake
-              "was" price.
+              Verified price drops on tools, outdoor and hunting gear, tech and men's clothing. We
+              track prices every day, and a deal only shows up here when the price genuinely falls
+              below what we've seen, not when a store invents a fake "was" price.
             </p>
           </div>
           <figure className="hero-dad">
