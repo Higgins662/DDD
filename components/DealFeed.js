@@ -6,9 +6,6 @@ import { titleCase } from "../lib/data";
 // Selecting nothing (or "All deals") goes back to the unfiltered home page.
 function hrefFor(selected) {
   if (!selected.length) return "/";
-  // One category is a real page (indexable, with its own intro); two or more
-  // are a filter on the home page.
-  if (selected.length === 1) return `/category/${encodeURIComponent(selected[0])}`;
   return `/?cat=${[...selected].sort().map(encodeURIComponent).join(",")}`;
 }
 
