@@ -8,7 +8,7 @@ export const metadata = {
   robots: { index: false, follow: true },
 };
 
-const EFFECTIVE = "October 16, 2026";
+const EFFECTIVE = "October 28, 2026";
 
 export default function Privacy() {
   return (
@@ -80,7 +80,9 @@ export default function Privacy() {
             .
           </li>
           <li>
-            <strong>Affiliate programs</strong>, including the eBay Partner Network and Amazon Associates. When you click a
+            <strong>Affiliate programs</strong>, including the eBay Partner Network, Amazon Associates
+            and CJ (Commission Junction), through which we link to DICK'S Sporting Goods and Kings
+            Camo. When you click a
             link to a store, that store and the affiliate network may record the click so we can be
             credited for a purchase. Their own privacy policies apply once you're on their sites.
           </li>
@@ -89,7 +91,11 @@ export default function Privacy() {
             addresses, for security and reliability.
           </li>
           <li>
-            <strong>Supabase</strong> stores our product and price data. It does not store
+            <strong>Neon</strong> stores the product and price data shown on the website. It does
+            not store information about website visitors.
+          </li>
+          <li>
+            <strong>Supabase</strong> also stores our product and price data. It does not store
             information about website visitors.
           </li>
         </ul>

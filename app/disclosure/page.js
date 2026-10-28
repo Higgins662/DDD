@@ -11,7 +11,8 @@ export default function Disclosure() {
       <div className="prose">
         <h1>Affiliate disclosure</h1>
         <p>
-          DropDadDeals participates in affiliate programs, including the eBay Partner Network.
+          DropDadDeals participates in affiliate programs, including the eBay Partner Network and
+          CJ (Commission Junction). Through CJ we link to DICK'S Sporting Goods and Kings Camo.
           When you click a link to a store on this site and make a purchase, we may earn a
           commission. This comes at no extra cost to you.
         </p>
