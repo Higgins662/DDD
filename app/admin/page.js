@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { headers } from "next/headers";
-import { getAdminDeals, passwordFromAuthHeader } from "../../lib/admin";
+import { getAdminAmazon, getAdminDeals, passwordFromAuthHeader } from "../../lib/admin";
 import { money, storeName, titleCase } from "../../lib/data";
 
 export const dynamic = "force-dynamic";
@@ -46,11 +46,14 @@ export default async function AdminPage({ searchParams }) {
   const password = passwordFromAuthHeader((await headers()).get("authorization"));
   let deals = [];
   let error = null;
+  const amazonPromise = getAdminAmazon(password).catch(() => null);
   try {
     deals = await getAdminDeals(password);
   } catch (e) {
     error = "Couldn't load deals from the database. Try refreshing.";
   }
+  const amazon = await amazonPromise;
+  const amazonNew = amazon?.new_count || 0;
 
   const counts = Object.fromEntries(VIEWS.map((v) => [v.key, deals.filter(v.test).length]));
   const shown = deals.filter(view.test);
@@ -78,10 +81,22 @@ export default async function AdminPage({ searchParams }) {
           <div>Last price check: <strong>{when(lastCheck) || "—"}</strong></div>
           <div className="adm-tz">Times are Eastern</div>
           <div><Link prefetch={false} href="/admin/roundups">Roundup share kit →</Link></div>
+          <div><Link prefetch={false} href="/admin/amazon">Amazon watch →</Link></div>
         </div>
       </div>
 
       {error ? <p className="notice">{error}</p> : null}
+
+      {amazonNew > 0 ? (
+        <Link prefetch={false} href="/admin/amazon" className="amz-alert">
+          <span className="amz-alert-num">{amazonNew}</span>
+          <span>
+            new Amazon {amazonNew === 1 ? "find" : "finds"} ready to post
+            <span className="adm-sub"> · open the Amazon watch list</span>
+          </span>
+          <span aria-hidden="true">→</span>
+        </Link>
+      ) : null}
 
       <div className="adm-tiles">
         {tiles.map((t) => (

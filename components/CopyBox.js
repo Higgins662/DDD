@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 // A read-only text block with a Copy button, for the admin share kit.
-export default function CopyBox({ label, text, hint, rows = 8, limit }) {
+export default function CopyBox({ label, text, hint, rows = 8, limit, showCount = true }) {
   const [copied, setCopied] = useState(false);
   const over = limit && text.length > limit;
   async function copy() {
@@ -24,10 +24,12 @@ export default function CopyBox({ label, text, hint, rows = 8, limit }) {
     <div className="kit-box">
       <div className="kit-box-head">
         <span className="kit-label">{label}</span>
-        <span className={`kit-count${over ? " kit-over" : ""}`}>
-          {text.length}
-          {limit ? ` / ${limit}` : ""} chars
-        </span>
+        {showCount ? (
+          <span className={`kit-count${over ? " kit-over" : ""}`}>
+            {text.length}
+            {limit ? ` / ${limit}` : ""} chars
+          </span>
+        ) : null}
         <button type="button" className="kit-copy" onClick={copy}>
           {copied ? "Copied ✓" : "Copy"}
         </button>
