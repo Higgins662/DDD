@@ -37,9 +37,41 @@ const VIEWS = [
   { key: "all", label: "All (30 days)", test: () => true },
 ];
 
+const SORTS = [
+  { key: "discount", label: "Biggest discount" },
+  { key: "newest", label: "Newest" },
+];
+
+// Percent below Amazon's list price, and percent below the price we recorded
+// just before the latest fall. The bigger one is the item's discount.
+function discountOf(i) {
+  const cur = Number(i.price_current);
+  if (!Number.isFinite(cur) || cur <= 0) return { pct: 0, basis: null };
+  const list = Number(i.list_price);
+  const vsList = Number.isFinite(list) && list > cur ? ((list - cur) / list) * 100 : 0;
+  const pts = (i.history || []).map((h) => Number(h.p)).filter((n) => Number.isFinite(n));
+  let prev = null;
+  for (let k = pts.length - 1; k >= 0; k--) {
+    if (pts[k] > cur + 0.005) {
+      prev = pts[k];
+      break;
+    }
+  }
+  const vsOurs = prev ? ((prev - cur) / prev) * 100 : 0;
+  if (!vsList && !vsOurs) return { pct: 0, basis: null };
+  return vsOurs > vsList ? { pct: vsOurs, basis: "vs our last" } : { pct: vsList, basis: "vs list" };
+}
+
+const href = (view, sort) => {
+  const q = [];
+  if (view !== "new") q.push(`view=${view}`);
+  if (sort !== "discount") q.push(`sort=${sort}`);
+  return `/admin/amazon${q.length ? `?${q.join("&")}` : ""}`;
+};
+
 function Spark({ history }) {
   const pts = (history || []).map((h) => Number(h.p)).filter((n) => Number.isFinite(n));
-  if (pts.length < 2) return <span className="adm-sub">{pts.length} check</span>;
+  if (pts.length < 2) return null;
   const w = 120;
   const h = 32;
   const lo = Math.min(...pts);
@@ -66,8 +98,9 @@ function Popularity({ i }) {
 }
 
 export default async function AmazonWatchPage({ searchParams }) {
-  const { view: rawView } = await searchParams;
+  const { view: rawView, sort: rawSort } = await searchParams;
   const view = VIEWS.find((v) => v.key === rawView) || VIEWS[0];
+  const sort = SORTS.find((x) => x.key === rawSort) || SORTS[0];
 
   const password = passwordFromAuthHeader((await headers()).get("authorization"));
   let data = null;
@@ -81,7 +114,14 @@ export default async function AmazonWatchPage({ searchParams }) {
   const items = data?.items || [];
   const run = data?.last_run || null;
   const counts = Object.fromEntries(VIEWS.map((v) => [v.key, items.filter(v.test).length]));
-  const shown = items.filter(view.test);
+  const shown = items
+    .filter(view.test)
+    .map((i) => ({ ...i, disc: discountOf(i) }))
+    .sort((a, b) =>
+      sort.key === "discount"
+        ? b.disc.pct - a.disc.pct || String(b.flagged_at).localeCompare(String(a.flagged_at))
+        : String(b.flagged_at).localeCompare(String(a.flagged_at))
+    );
 
   const tiles = [
     { label: "New to post", value: data?.new_count ?? "—" },
@@ -127,7 +167,7 @@ export default async function AmazonWatchPage({ searchParams }) {
           <Link
             prefetch={false}
             key={v.key}
-            href={v.key === "new" ? "/admin/amazon" : `/admin/amazon?view=${v.key}`}
+            href={href(v.key, sort.key)}
             className={`chip${v.key === view.key ? " active" : ""}`}
             scroll={false}
           >
@@ -136,6 +176,21 @@ export default async function AmazonWatchPage({ searchParams }) {
           </Link>
         ))}
       </nav>
+
+      <div className="amz-sort" role="group" aria-label="Sort">
+        <span className="adm-sub">Sort:</span>
+        {SORTS.map((x) => (
+          <Link
+            prefetch={false}
+            key={x.key}
+            href={href(view.key, x.key)}
+            className={`amz-sort-btn${x.key === sort.key ? " active" : ""}`}
+            scroll={false}
+          >
+            {x.label}
+          </Link>
+        ))}
+      </div>
 
       <ol className="amz-list">
         {shown.map((i) => {
@@ -181,6 +236,11 @@ export default async function AmazonWatchPage({ searchParams }) {
                 ) : null}
               </div>
               <div className="amz-price">
+                {i.disc.pct >= 1 ? (
+                  <div className="amz-pct" title={`${Math.round(i.disc.pct)}% ${i.disc.basis}`}>
+                    −{Math.round(i.disc.pct)}%<span>{i.disc.basis}</span>
+                  </div>
+                ) : null}
                 <div className="adm-num">{money(Number(i.price_current))}</div>
                 {i.list_price ? (
                   <div className="adm-sub adm-num">

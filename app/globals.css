@@ -301,6 +301,13 @@ img { max-width: 100%; display: block; }
 .amz-price { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
 .amz-price > .adm-num { font-size: 18px; font-weight: 600; }
 .amz-spark { color: var(--muted); margin-top: 4px; }
+.amz-sort { display: flex; align-items: center; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.amz-sort .adm-sub { margin: 0 2px 0 0; }
+.amz-sort-btn { font-family: var(--mono); font-size: 12px; text-decoration: none; color: var(--muted); padding: 3px 9px; border-radius: 6px; border: 1px solid var(--line); }
+.amz-sort-btn:hover { color: var(--ink); }
+.amz-sort-btn.active { color: var(--accent); border-color: var(--accent); }
+.amz-pct { font-family: var(--mono); font-weight: 700; font-size: 15px; color: var(--accent-ink); background: var(--accent); padding: 2px 8px; border-radius: 6px; display: inline-flex; align-items: baseline; gap: 6px; }
+.amz-pct span { font-weight: 500; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
 @media (max-width: 760px) {
   .amz-item { grid-template-columns: 72px minmax(0, 1fr); }
   .amz-img { width: 72px; height: 72px; }
