@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { headers } from "next/headers";
 import CopyBox from "../../../components/CopyBox";
+import PostedCheck from "../../../components/PostedCheck";
 import { getAdminAmazon, passwordFromAuthHeader } from "../../../lib/admin";
 import { money } from "../../../lib/data";
 
@@ -220,6 +221,7 @@ export default async function AmazonWatchPage({ searchParams }) {
                 </a>
                 <Popularity i={i} />
                 <p className="amz-reason">{i.flag_reason}</p>
+                <PostedCheck asin={i.asin} postedAt={i.posted_at} />
                 {!i.affiliate_url ? (
                   <p className="kit-hint kit-over">No tag on this link: set AMAZON_PARTNER_TAG for amazon_watch.py.</p>
                 ) : null}
@@ -259,8 +261,9 @@ export default async function AmazonWatchPage({ searchParams }) {
       <p className="adm-foot">
         Filled by <code>amazon_watch.py</code>. &ldquo;Price drop&rdquo; = our own recorded price fell
         15%+ to a new 30-day low. &ldquo;Amazon markdown&rdquo; = Amazon shows 25%+ off and the item is
-        popular. Items you post with <code>amazon_poster.py</code> move to &ldquo;Posted&rdquo; on the next
-        watch run.
+        popular. Tick &ldquo;I posted this&rdquo; after posting (items you post with
+        <code>amazon_poster.py</code> are also marked on the next watch run): a posted item isn&apos;t
+        flagged again for 45 days. Untick it if you ticked the wrong one.
       </p>
     </div>
   );

@@ -301,6 +301,11 @@ img { max-width: 100%; display: block; }
 .amz-price { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
 .amz-price > .adm-num { font-size: 18px; font-weight: 600; }
 .amz-spark { color: var(--muted); margin-top: 4px; }
+.amz-check { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-top: 10px; }
+.amz-check label { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600; font-size: 14px; padding: 6px 12px 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
+.amz-check input { width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer; margin: 0; }
+.amz-check.on label { border-color: var(--good); color: var(--good); }
+.amz-check .adm-sub { margin: 0; }
 .amz-sort { display: flex; align-items: center; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
 .amz-sort .adm-sub { margin: 0 2px 0 0; }
 .amz-sort-btn { font-family: var(--mono); font-size: 12px; text-decoration: none; color: var(--muted); padding: 3px 9px; border-radius: 6px; border: 1px solid var(--line); }
