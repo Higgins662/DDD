@@ -1,57 +1,29 @@
-import Link from "next/link";
 import DealCard from "./DealCard";
+import ChipFilter from "./ChipFilter";
 import { titleCase } from "../lib/data";
 
-// Link that toggles one category in or out of the current selection.
-// Selecting nothing (or "All deals") goes back to the unfiltered home page.
-function hrefFor(selected) {
-  if (!selected.length) return "/";
-  return `/?cat=${[...selected].sort().map(encodeURIComponent).join(",")}`;
-}
-
-function toggle(selected, slug) {
-  return selected.includes(slug) ? selected.filter((s) => s !== slug) : [...selected, slug];
-}
-
+// Every deal is rendered once; the chips (ChipFilter, in the browser) hide the
+// ones outside the selected categories. `selected` is the starting selection
+// (a category page starts with its own category picked).
 export default function DealFeed({ deals, categories, selected = [], emptyCategory = null }) {
-  const shown = selected.length ? deals.filter((d) => selected.includes(d.categorySlug)) : deals;
-  const live = shown.filter((d) => !d.priceRoseAfterDeal);
-  const ended = shown.filter((d) => d.priceRoseAfterDeal);
+  const live = deals.filter((d) => !d.priceRoseAfterDeal);
+  const ended = deals.filter((d) => d.priceRoseAfterDeal);
+
+  // Per category: how many live and ended deals, so the chips can hide a
+  // section heading when none of its cards are in the selection.
+  const counts = new Map();
+  for (const d of deals) {
+    if (!d.categorySlug) continue;
+    const c = counts.get(d.categorySlug) || { live: 0, ended: 0 };
+    if (d.priceRoseAfterDeal) c.ended += 1;
+    else c.live += 1;
+    counts.set(d.categorySlug, c);
+  }
+  const chips = categories.map((c) => ({ ...c, label: titleCase(c.name), ...(counts.get(c.slug) || { live: 0, ended: 0 }) }));
 
   return (
-    <div className="wrap">
-      {categories.length > 0 && (
-        <nav className="chips" aria-label="Filter by category (select any number)">
-          <Link prefetch={false} href="/" className={`chip${selected.length ? "" : " active"}`} scroll={false}>
-            All deals
-          </Link>
-          {categories.map((c) => {
-            const on = selected.includes(c.slug);
-            return (
-              <Link prefetch={false}
-                key={c.slug}
-                href={hrefFor(toggle(selected, c.slug))}
-                className={`chip${on ? " active" : ""}`}
-                aria-label={`${titleCase(c.name)}, ${c.count} deal${c.count === 1 ? "" : "s"}, ${on ? "selected" : "not selected"}`}
-                scroll={false}
-                rel="nofollow"
-              >
-                {on ? <span className="chip-check" aria-hidden="true">✓</span> : null}
-                {titleCase(c.name)}
-                <span className="count">{c.count}</span>
-              </Link>
-            );
-          })}
-        </nav>
-      )}
-
-      {selected.length > 0 && (
-        <p className="filter-summary">
-          Showing {shown.length} deal{shown.length === 1 ? "" : "s"} in {selected.length}{" "}
-          {selected.length === 1 ? "category" : "categories"} ·{" "}
-          <Link prefetch={false} href="/" scroll={false}>Clear filter</Link>
-        </p>
-      )}
+    <div className="wrap" id="deal-feed">
+      {chips.length > 0 && <ChipFilter categories={chips} initial={selected} feedId="deal-feed" />}
 
       {emptyCategory ? (
         <p className="empty">Here's everything else we're tracking right now.</p>
@@ -62,21 +34,21 @@ export default function DealFeed({ deals, categories, selected = [], emptyCatego
       ) : null}
 
       {live.length > 0 && (
-        <>
+        <section data-sec="live">
           <h2 className="section-title">Live price drops</h2>
           <div className="grid">
             {live.map((d) => <DealCard key={d.id} deal={d} />)}
           </div>
-        </>
+        </section>
       )}
 
       {ended.length > 0 && (
-        <>
+        <section data-sec="ended">
           <h2 className="section-title">Recently ended</h2>
           <div className="grid">
             {ended.map((d) => <DealCard key={d.id} deal={d} />)}
           </div>
-        </>
+        </section>
       )}
     </div>
   );
