@@ -4,7 +4,7 @@ export default function robots() {
   return {
     // Chip combinations (?cat=a,b,c) make millions of addresses; crawlers only
     // need the plain pages and /category/<name>.
-    rules: [{ userAgent: "*", allow: "/", disallow: ["/admin", "/*?cat=", "/*?*&cat="] }],
+    rules: [{ userAgent: "*", allow: "/", disallow: ["/admin", "/api/", "/*?cat=", "/*?*&cat="] }],
     sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }
