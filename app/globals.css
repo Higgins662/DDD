@@ -410,3 +410,7 @@ button.chip { font-family: inherit; line-height: inherit; cursor: pointer; }
 }
 
 .deal-listing { font-size: 13px; color: var(--muted); margin: -6px 0 14px; }
+
+/* Google AdSense slot (between live and ended deals) */
+.ad-slot { margin: 34px 0 6px; padding: 10px 0 12px; border-top: 1px dashed var(--line); border-bottom: 1px dashed var(--line); min-height: 100px; }
+.ad-label { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; text-align: center; }

@@ -1,5 +1,6 @@
 import DealCard from "./DealCard";
 import ChipFilter from "./ChipFilter";
+import AdSlot from "./AdSlot";
 import { titleCase } from "../lib/data";
 
 // Every deal is rendered once; the chips (ChipFilter, in the browser) hide the
@@ -41,6 +42,9 @@ export default function DealFeed({ deals, categories, selected = [], emptyCatego
           </div>
         </section>
       )}
+
+      {/* Google AdSense banner between the live and the ended deals. */}
+      {live.length > 0 && ended.length > 0 && <AdSlot />}
 
       {ended.length > 0 && (
         <section data-sec="ended">
