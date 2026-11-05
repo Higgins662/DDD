@@ -8,7 +8,7 @@ export const metadata = {
   robots: { index: false, follow: true },
 };
 
-const EFFECTIVE = "October 28, 2026";
+const EFFECTIVE = "November 4, 2026";
 
 export default function Privacy() {
   return (
@@ -37,9 +37,9 @@ export default function Privacy() {
           (city or region, based on IP address), and the website that referred you.
         </p>
         <p>
-          <strong>Cookies.</strong> We use cookies and similar technologies for analytics (see
-          Google Analytics below). Stores we link to may also set cookies when you click through to
-          them, so they can credit us for referrals.
+          <strong>Cookies.</strong> We use cookies and similar technologies for analytics and
+          advertising (see Google Analytics and Google AdSense below). Stores we link to may also set
+          cookies when you click through to them, so they can credit us for referrals.
         </p>
 
         <h2>How we use information</h2>
@@ -80,6 +80,23 @@ export default function Privacy() {
             .
           </li>
           <li>
+            <strong>Google AdSense</strong> shows ads on some pages. Google and its partners use
+            cookies to serve ads based on your visits to this and other websites. You can turn off
+            personalized ads in{" "}
+            <a href="https://adssettings.google.com" target="_blank" rel="noopener">
+              Google's Ads Settings
+            </a>{" "}
+            or opt out of many third-party ad vendors' cookies at{" "}
+            <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">
+              aboutads.info
+            </a>
+            . See{" "}
+            <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">
+              how Google uses cookies in advertising
+            </a>
+            .
+          </li>
+          <li>
             <strong>Affiliate programs</strong>, including the eBay Partner Network, Amazon Associates
             and CJ (Commission Junction), through which we link to DICK'S Sporting Goods and Kings
             Camo. When you click a
@@ -109,8 +126,8 @@ export default function Privacy() {
 
         <h2 id="data-deletion">Your choices and deleting your data</h2>
         <p>
-          You can block or delete cookies in your browser settings and opt out of Google Analytics
-          with the add-on linked above. You can also ask us what information we hold about you, or
+          You can block or delete cookies in your browser settings, opt out of Google Analytics
+          with the add-on linked above, and turn off personalized ads in Google's Ads Settings. You can also ask us what information we hold about you, or
           ask us to delete it.
         </p>
         <p>

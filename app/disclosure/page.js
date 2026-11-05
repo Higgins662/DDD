@@ -38,6 +38,16 @@ export default function Disclosure() {
           </a>
           .
         </p>
+        <h2>Ads</h2>
+        <p>
+          Some pages show ads from Google AdSense, labeled "Advertisement". Google and its partners
+          use cookies to choose which ads to show. We don't pick the ads, and an ad isn't a deal we
+          tracked or an endorsement. You can turn off personalized ads in{" "}
+          <a href="https://adssettings.google.com" target="_blank" rel="noopener">
+            Google's Ads Settings
+          </a>
+          .
+        </p>
       </div>
     </div>
   );
