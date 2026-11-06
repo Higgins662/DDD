@@ -414,3 +414,32 @@ button.chip { font-family: inherit; line-height: inherit; cursor: pointer; }
 /* Google AdSense slot (between live and ended deals) */
 .ad-slot { margin: 34px 0 6px; padding: 10px 0 12px; border-top: 1px dashed var(--line); border-bottom: 1px dashed var(--line); min-height: 100px; }
 .ad-label { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; text-align: center; }
+
+/* Black Friday page: compact deal cards */
+.bf-jump { margin-top: 22px; }
+/* Categories flow into columns so small ones sit side by side. */
+.bf-groups { columns: 3 320px; column-gap: 18px; margin-top: 6px; }
+.bf-group { break-inside: avoid; scroll-margin-top: 80px; padding-top: 2px; }
+.bf-group .section-title { margin: 22px 0 10px; }
+.bf-count { color: var(--accent); }
+.mini-list { display: flex; flex-direction: column; gap: 8px; }
+.mini { position: relative; display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px; text-decoration: none; color: inherit; transition: border-color 0.15s; }
+.mini:hover { border-color: var(--accent); }
+.mini-img { width: 76px; height: 76px; background: var(--img-well); border-radius: 7px; overflow: hidden; display: grid; place-items: center; }
+.mini-img img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.mini-body { min-width: 0; padding-right: 46px; }
+.mini-store { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.mini-title { font-size: 14px; font-weight: 600; line-height: 1.25; margin: 3px 0 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.mini-prices { display: flex; align-items: baseline; gap: 8px; }
+.mini-now { font-family: var(--mono); font-size: 16px; font-weight: 600; }
+.mini-was { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: line-through; text-decoration-color: var(--accent); }
+.mini-pct { position: absolute; top: 9px; right: 10px; font-family: var(--mono); font-size: 12px; font-weight: 600; color: #1b1c1e; background: var(--accent); border-radius: 6px; padding: 2px 6px; }
+.bf-foot { font-size: 12px; color: var(--muted); margin: 28px 0 0; }
+@media (max-width: 700px) {
+  .bf-jump { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+  .bf-jump .chip { flex: none; }
+}
+@media (max-width: 480px) {
+  .mini { grid-template-columns: 64px minmax(0, 1fr); padding: 8px; }
+  .mini-img { width: 64px; height: 64px; }
+}

@@ -17,6 +17,7 @@ export default async function sitemap() {
     { url: `${SITE_URL}/`, changeFrequency: "hourly", priority: 1 },
     { url: `${SITE_URL}/about`, changeFrequency: "monthly", priority: 0.3 },
     { url: `${SITE_URL}/roundups`, changeFrequency: "daily", priority: 0.8 },
+    { url: `${SITE_URL}/black-friday`, changeFrequency: "hourly", priority: 0.9 },
     ...roundupDays.map((k) => ({ url: `${SITE_URL}/roundup/daily/${k}`, changeFrequency: "daily", priority: 0.6 })),
     ...roundupWeeks.map((k) => ({ url: `${SITE_URL}/roundup/weekly/${k}`, changeFrequency: "daily", priority: 0.7 })),
     ...cats.map((slug) => ({ url: `${SITE_URL}/category/${slug}`, changeFrequency: "daily", priority: 0.7 })),
