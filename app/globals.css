@@ -443,3 +443,10 @@ button.chip { font-family: inherit; line-height: inherit; cursor: pointer; }
   .mini { grid-template-columns: 64px minmax(0, 1fr); padding: 8px; }
   .mini-img { width: 64px; height: 64px; }
 }
+
+/* Header: Black Friday link (seasonal) */
+.site-nav a.nav-bf { color: var(--accent); }
+.site-nav a.nav-bf:hover { filter: brightness(1.15); }
+/* Phones: room for Black Friday, logo and Follow only (Roundups stays in the footer/home). */
+@media (max-width: 480px) { .site-nav a[href="/roundups"] { display: none; } }
+@media (max-width: 379px) { .site-nav { gap: 8px; font-size: 12px; letter-spacing: 0.04em; } .brand-name { font-size: 19px; } }

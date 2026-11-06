@@ -41,6 +41,7 @@ export default function RootLayout({ children }) {
             </Link>
             <nav className="site-nav">
               <Link prefetch={false} href="/">Deals</Link>
+              <Link prefetch={false} href="/black-friday" className="nav-bf">Black Friday</Link>
               <Link prefetch={false} href="/roundups">Roundups</Link>
               <Link prefetch={false} href="/about">How it works</Link>
               <HeaderFollow />
