@@ -28,6 +28,7 @@ const CACHE_RULES = [
   ["/", LIST_CACHE, true],
   ["/roundups", LIST_CACHE, true],
   ["/black-friday", LIST_CACHE, true],
+  ["/black-friday/opengraph-image", SLOW_CACHE, false],
   ["/category/:path*", LIST_CACHE, true],
   ["/roundup/:path*", LIST_CACHE, true],
   ["/deal/:path*", DEAL_CACHE, true],

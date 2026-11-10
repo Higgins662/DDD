@@ -1,7 +1,7 @@
 import Link from "next/link";
 import CompactDealCard from "../../components/CompactDealCard";
 import AdSlot from "../../components/AdSlot";
-import { getDeals, slugify, titleCase } from "../../lib/data";
+import { getDeals, slugify, titleCase, SITE_URL } from "../../lib/data";
 import { plural } from "../../lib/seo";
 
 // Black Friday: only the biggest live drops (35%+ below the price we tracked
@@ -31,7 +31,9 @@ export const metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/black-friday" },
-  openGraph: { title: `${TITLE} | DropDadDeals`, description: DESCRIPTION },
+  openGraph: { title: `${TITLE} | DropDadDeals`, description: DESCRIPTION, url: "/black-friday", type: "website" },
+  twitter: { card: "summary_large_image", title: `${TITLE} | DropDadDeals`, description: DESCRIPTION },
+  robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
 };
 
 function groupByCategory(deals) {
@@ -65,8 +67,47 @@ export default async function BlackFridayPage() {
   const picks = deals.filter((d) => !d.priceRoseAfterDeal && d.discountPct >= MIN_PCT && d.priceNow !== null);
   const groups = groupByCategory(picks);
 
+  // Structured data so Google understands the page: a collection of deal
+  // pages (in the order shown) plus its place in the site.
+  const pageUrl = `${SITE_URL}/black-friday`;
+  const listed = groups.flatMap((g) => g.items).slice(0, 100);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${pageUrl}#page`,
+        url: pageUrl,
+        name: TITLE,
+        description: DESCRIPTION,
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        about: ["Black Friday", "Cyber Monday"],
+        dateModified: new Date().toISOString(),
+        mainEntity: {
+          "@type": "ItemList",
+          name: `Black Friday deals ${YEAR}`,
+          numberOfItems: listed.length,
+          itemListElement: listed.map((d, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `${SITE_URL}/deal/${d.id}`,
+            name: d.title,
+          })),
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "DropDadDeals", item: `${SITE_URL}/` },
+          { "@type": "ListItem", position: 2, name: `Black Friday Deals ${YEAR}`, item: pageUrl },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className="hero" style={{ paddingBottom: 0 }}>
         <div className="wrap">
           <p className="eyebrow">Thanksgiving to Cyber Monday</p>
