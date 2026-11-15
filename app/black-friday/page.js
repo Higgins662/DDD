@@ -1,6 +1,5 @@
 import Link from "next/link";
 import CompactDealCard from "../../components/CompactDealCard";
-import AdSlot from "../../components/AdSlot";
 import { getDeals, slugify, titleCase, SITE_URL } from "../../lib/data";
 import { plural } from "../../lib/seo";
 
@@ -10,15 +9,6 @@ import { plural } from "../../lib/seo";
 export const dynamic = "force-dynamic";
 
 const MIN_PCT = 35;
-const BF_AD_SLOT = "6925158422"; // AdSense unit "BF-Ads"
-const SPLIT_AT = 6; // with this many categories or more, the ad goes halfway down
-
-// Two halves (ad between them) when there are enough categories, else one.
-function split(groups) {
-  if (groups.length < SPLIT_AT) return [groups];
-  const half = Math.ceil(groups.length / 2);
-  return [groups.slice(0, half), groups.slice(half)];
-}
 const OTHER = "More gear"; // deals with no category (e.g. Kings Camo, DICK'S)
 
 // The year in the title and heading (people search "black friday deals 2026"),
@@ -134,13 +124,8 @@ export default async function BlackFridayPage() {
                 </a>
               ))}
             </nav>
-            {/* Ad: a full-width break halfway down the categories (or after
-                them when there are only a few), never above the first deals. */}
-            {split(groups).map((part, i) => (
-              <div key={i}>
-                {i > 0 ? <AdSlot slot={BF_AD_SLOT} /> : null}
-                <div className="bf-groups">
-                  {part.map((g) => (
+            <div className="bf-groups">
+                  {groups.map((g) => (
                     <section key={g.slug} id={g.slug} className="bf-group">
                       <h2 className="section-title">
                         {g.name === OTHER ? g.name : `${g.name} deals`}{" "}
@@ -153,10 +138,7 @@ export default async function BlackFridayPage() {
                       </div>
                     </section>
                   ))}
-                </div>
-              </div>
-            ))}
-            {groups.length < SPLIT_AT ? <AdSlot slot={BF_AD_SLOT} /> : null}
+            </div>
           </>
         ) : (
           <p className="empty">
