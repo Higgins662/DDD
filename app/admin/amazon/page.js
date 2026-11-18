@@ -98,6 +98,71 @@ function Popularity({ i }) {
   return bits.length ? <div className="adm-sub">{bits.join(" · ")}</div> : null;
 }
 
+// The hourly pick from amazon_nextup.py: a ready-to-paste comment (our words, no prices),
+// with Amazon's title and price shown for you only, so you can check it before pasting.
+const STALE_HOURS = 48;
+
+function NextUp({ picks }) {
+  if (!picks.length) {
+    return (
+      <section className="nu nu-empty" aria-label="Next up">
+        <p className="adm-sub">
+          No pick waiting. <code>amazon_nextup.py</code> adds the best fresh item here each hour it runs.
+        </p>
+      </section>
+    );
+  }
+  return (
+    <section className="nu" aria-label="Next up">
+      {picks.map((p, idx) => {
+        const seen = p.last_seen || p.price_seen;
+        const stale = seen && Date.now() - new Date(seen).getTime() > STALE_HOURS * 3600000;
+        return (
+          <article key={p.id} className={`nu-card${idx ? " nu-older" : ""}`}>
+            <div className="nu-head">
+              <span className="nu-eyebrow">{idx ? "Still waiting" : "Next up"}</span>
+              <span className="adm-sub">picked {when(p.picked_at)}</span>
+            </div>
+            <div className="nu-row">
+              <div className="amz-img">
+                {p.image_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={p.image_url} alt="" loading="lazy" referrerPolicy="no-referrer" />
+                ) : null}
+              </div>
+              <div className="nu-main">
+                <div className="nu-name">{p.name}</div>
+                <div className="adm-sub nu-private">
+                  For you only: {money(Number(p.price_current))}
+                  {p.list_price ? (
+                    <>
+                      {" "}(list <s>{money(Number(p.list_price))}</s>)
+                    </>
+                  ) : null}
+                  {" "}· price seen {when(seen) || "?"}
+                </div>
+                {stale ? (
+                  <p className="kit-hint kit-over">Price is over 2 days old. Check it on Amazon before you post.</p>
+                ) : null}
+              </div>
+            </div>
+            <CopyBox label="Paste in the thread" text={p.comment} rows={6} showCount={false} />
+            <div className="nu-actions">
+              <a className="nu-open" href={p.link} target="_blank" rel="noopener nofollow noreferrer">
+                Check it on Amazon ↗
+              </a>
+              <PostedCheck asin={p.asin} postedAt={null} />
+            </div>
+            <p className="adm-sub nu-skip">
+              Not posting it: <code>py amazon_watch.py --dismiss {p.asin}</code>
+            </p>
+          </article>
+        );
+      })}
+    </section>
+  );
+}
+
 export default async function AmazonWatchPage({ searchParams }) {
   const { view: rawView, sort: rawSort } = await searchParams;
   const view = VIEWS.find((v) => v.key === rawView) || VIEWS[0];
@@ -148,6 +213,8 @@ export default async function AmazonWatchPage({ searchParams }) {
 
       {error ? <p className="notice">{error}</p> : null}
       {run?.error ? <p className="notice">Last run reported: {run.error}</p> : null}
+
+      {data ? <NextUp picks={data.next_up || []} /> : null}
 
       <div className="adm-tiles">
         {tiles.map((t) => (

@@ -315,6 +315,28 @@ button.chip { font-family: inherit; line-height: inherit; cursor: pointer; }
 .amz-sort-btn.active { color: var(--accent); border-color: var(--accent); }
 .amz-pct { font-family: var(--mono); font-weight: 700; font-size: 15px; color: var(--accent-ink); background: var(--accent); padding: 2px 8px; border-radius: 6px; display: inline-flex; align-items: baseline; gap: 6px; }
 .amz-pct span { font-weight: 500; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+/* Admin Amazon: the hourly "Next up" pick */
+.nu { display: flex; flex-direction: column; gap: 12px; margin: 16px 0 4px; }
+.nu-empty { padding: 10px 14px; border: 1px dashed var(--line); border-radius: 12px; }
+.nu-empty .adm-sub { margin: 0; }
+.nu-card { border: 2px solid var(--accent); border-radius: 12px; padding: 14px; background: var(--surface); display: flex; flex-direction: column; gap: 12px; }
+.nu-older { border-width: 1px; border-color: var(--line); }
+.nu-head { display: flex; align-items: baseline; gap: 10px; }
+.nu-head .adm-sub { margin: 0; }
+.nu-eyebrow { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.nu-older .nu-eyebrow { color: var(--muted); }
+.nu-row { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 14px; align-items: center; }
+.nu-row .amz-img { width: 72px; height: 72px; }
+.nu-name { font-weight: 600; font-size: 17px; }
+.nu-private { margin: 4px 0 0; }
+.nu-main .kit-hint { margin: 6px 0 0; }
+.nu-card .kit-text { font-size: 13px; }
+.nu-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.nu-actions .amz-check { margin-top: 0; }
+.nu-open { font-weight: 600; font-size: 14px; text-decoration: none; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--accent); color: var(--accent); }
+.nu-open:hover { background: rgba(242, 102, 28, 0.1); }
+.nu-skip { margin: 0; }
+.nu-skip code { font-size: 12px; }
 @media (max-width: 760px) {
   .amz-item { grid-template-columns: 72px minmax(0, 1fr); }
   .amz-img { width: 72px; height: 72px; }
